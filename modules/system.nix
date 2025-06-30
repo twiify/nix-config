@@ -92,8 +92,7 @@
   # 启用 docker
   virtualisation.docker = {
     enable = true;
-    
-    # storageDriver = "btrfs"; # or "zfs"
+    storageDriver = "btrfs"; # or "zfs"
   };
 
   environment.systemPackages = with pkgs; [
@@ -101,6 +100,7 @@
     wget
     curl
     git
+    git-lfs
     htop
     neovim
     unzip

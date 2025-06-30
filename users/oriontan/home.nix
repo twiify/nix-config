@@ -11,6 +11,12 @@
   # Git 配置
   programs.git = {
     enable = true;
+    lfs.enable = true;
+    config = {
+      init = {
+        defaultBranch = "main";
+      };
+    };
     userName = "Twiify";
     userEmail = "ppixiu07@gmail.com";
   };

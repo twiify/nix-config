@@ -18,7 +18,7 @@
     # };
     grub = {
       enable = true;
-      device = "/dev/nvme0n2"; #  "nodev"
+      device = "/dev/sda"; #  "nodev"
       efiSupport = false;
       useOSProber = true;
       #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
