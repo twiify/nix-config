@@ -12,28 +12,31 @@
 
   # Bootloader
   boot.loader = {
-    # efi = {
-    #   canTouchEfiVariables = true;
-    #   efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
-    # };
+    timeout = 10;
+    systemd-boot.enable = false;
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot"; # ← use the same mount point here.
+    };
     grub = {
       enable = true;
-      device = "/dev/sda"; #  "nodev"
-      efiSupport = false;
+      device = "nodev"; #  "nodev"
+      efiSupport = true;
       useOSProber = true;
-      #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+      # efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
     };
+    
   };
 
   services.printing.enable = true;
   networking.hostName = "nixos-pc";
   networking.networkmanager.enable = true;
-  networking.wireless.enable = true;
+  # networking.wireless.enable = true;
   networking.firewall.enable = false;
 
-  services = {
-    udev.packages = with pkgs; [gnome-settings-daemon];
-  };
+  # services = {
+  #   udev.packages = with pkgs; [gnome-settings-daemon];
+  # };
 
   environment.systemPackages = with pkgs; [
   ];

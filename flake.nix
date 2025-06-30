@@ -20,14 +20,16 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs: {
     nixosConfigurations = {
       nixos-nas = let
         username = "oriontan"; # 修改为实际用户名
         profileName = "nas";
+        unstable = nixpkgs-unstable.legacyPackages."x86_64-linux";
         specialArgs = {
           inherit username;
           inherit profileName;
+          inherit unstable;
         };
       in
         nixpkgs.lib.nixosSystem {
@@ -45,6 +47,7 @@
               home-manager.useUserPackages = true;
               
               home-manager.extraSpecialArgs = inputs // specialArgs;
+              home-manager.backupFileExtension = "backup";
               home-manager.users.root = import ./users/${username}/root.nix;
               home-manager.users.${username} = import ./users/${username}/home.nix;
             }
@@ -54,9 +57,11 @@
       nixos-pc = let
         username = "oriontan"; # 修改为实际用户名
         profileName = "pc";
+        unstable = nixpkgs-unstable.legacyPackages."x86_64-linux";
         specialArgs = {
           inherit username;
           inherit profileName;
+          inherit unstable;
         };
       in
         nixpkgs.lib.nixosSystem {
@@ -74,6 +79,7 @@
               home-manager.useUserPackages = true;
               
               home-manager.extraSpecialArgs = inputs // specialArgs;
+              home-manager.backupFileExtension = "backup";
               home-manager.users.root = import ./users/${username}/root.nix;
               home-manager.users.${username} = import ./users/${username}/home.nix;
             }

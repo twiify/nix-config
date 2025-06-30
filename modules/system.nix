@@ -31,11 +31,6 @@
   nixpkgs.config = {
     # 允许闭源软件
     allowUnfree = true;
-    packageOverrides = pkgs: {
-      unstable = import inputs.nixpkgs-unstable {
-        config = config.nixpkgs.config;
-      };
-    };
   };
 
   time.timeZone = "Asia/Shanghai";
@@ -110,6 +105,7 @@
     usbutils # lsusb
     lshw
 
+    efibootmgr
     btrfs-progs
     nnn
     smartmontools # 硬盘健康监控
