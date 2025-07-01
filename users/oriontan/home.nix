@@ -25,11 +25,32 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    syntaxHighlighting.enable = true;
     shellAliases = {
       ll = "ls -avhl";
       cls = "clear";
+      umount = "umount -v";
+      chmod = "chmod -v";
+      chown = "chown -v";
+      cp = "cp -v";
+      mv = "mv -v";
+      rm = "rm -v";
+      rmdir = "rmdir -v";
+      mkdir = "mkdir -pv";
+    };
+
+    history.size = 10000;
+    history.ignoreAllDups = true;
+    history.path = "$HOME/.zsh_history";
+    history.ignorePatterns = ["rm *" "pkill *" "cp *"];
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"  # also requires `programs.git.enable = true;`
+      ];
+      theme = "wuffers";
     };
   };
-
 
 }

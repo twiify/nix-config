@@ -24,6 +24,11 @@
       efiSupport = true;
       useOSProber = true;
       # efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+
+      theme = pkgs.sleek-grub-theme.override {
+        withBanner = "Grub Bootloader";
+        withStyle = "dark";
+      };
     };
     
   };
